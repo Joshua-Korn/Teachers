@@ -1,0 +1,155 @@
+@font-face {
+    font-family: Chalkboard;
+    src: url("/static/fonts/Chalktastic-x1nR.ttf");
+}
+
+body {
+    font-family: Chalkboard;
+    color: white;
+    background-image: url("/static/img/board.jpg");
+}
+
+.top-page {
+    font-size: x-large;
+    text-indent: 50px;
+}
+
+.tbs {
+    border: none;
+    background: none;
+    color: white;
+    font-size: xx-large;
+}
+
+.buttons {
+    margin-top: 30px;
+}
+
+.form-popup {
+    display: none;
+    color: black;
+    background-image: url("/static/img/blank_paper.jpg");
+    position: fixed;
+    top: 100px;
+    left: 25px;
+    z-index: 9;
+}
+
+.ins {
+    background: none;
+    border-bottom: 3px solid black;
+}
+
+.dash-links {
+    background: none;
+    border: none;
+    color: white;
+    margin-bottom: -5px;
+    margin-left: 20px;
+    padding: 0;
+}
+
+#my-plans {
+    background-image: url("/static/img/blank_paper.jpg");
+}
+
+
+.table thead th {
+    vertical-align: middle;
+    border-bottom: 2px solid #dee2e6;
+    font-size: larger;
+}
+
+#new-form {
+    background-image: url("/static/img/blank_paper.jpg");
+    color:black;
+}
+
+.card-text {
+    font-size: larger;
+}
+
+#math-banner {
+    background-color: rgb(163, 163, 223);
+}
+
+#language-banner {
+    background-color: rgb(223, 226, 124);
+}
+
+#science-banner {
+    background-color: rgb(163, 223, 173);
+}
+
+#music-banner {
+    background-color: rgb(201, 168, 21);
+}
+
+#art-banner {
+    background-color: rgb(192, 163, 223);
+}
+
+#japanese-banner {
+    background-color: rgb(246, 104, 104);
+}
+
+#details {
+    background-image: url("/static/img/blank_paper.jpg");
+    color:black;
+}
+
+ul > li.nav-item > a.nav-link, ul > li.navbar-item.active > a.nav-link {
+    color: black;
+    font-size: 22px;
+    line-height: 22px;
+    padding-bottom: 0px;
+    text-align: center;
+}
+
+.hover-underline {
+    display: inline-block;
+    position: relative;
+    color: white;
+}
+
+.hover-underline-d {
+    display: inline-block;
+    position: relative;
+    color: black;
+}
+
+.hover-underline::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.hover-underline-d::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: black;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.hover-underline:hover::after, .hover-underline-d:hover::after {
+    transform:scaleX(1);
+    transform-origin: bottom left;
+}
+
+#comments {
+    justify-content: flex-start;
+    align-items: baseline;
+}

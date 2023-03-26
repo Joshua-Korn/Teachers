@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Co-Op</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static', filename='/css/style.css')}}" />
+</head>
+<body>
+    <h1 class="text-center m-4 p-3">Teacher Co-Op</h1>
+    <div class="container">
+        <div class="col-8 mx-auto">
+            <p class="top-page">Welcome teachers! The Teacher Co-Op is a platform where elementary school teachers can share their lesson plans with each other
+                to find great new ideas for their class.  
+            </p>
+            <p class="top-page">We currently cover grades Kinder through fifth with lesson plans for math, language arts, science, music,
+                art, and Japanese. We are hoping to add more grades and subjects in the near future, so please join us today and you can start sharing lesson plans 
+                with other teachers from all over!
+            </p>
+            <div class="row buttons">
+                <div class="col-4 mx-auto">
+                    <button class="tbs open-button" onclick="openForm()">Login</button>
+                </div>
+                <div class="col-4 mx-auto">
+                    <button class="tbs open-button" onclick="openForm2()">Join</button>
+                </div>
+            </div>
+        </div>
+        <div class="form-popup" id="myForm2">
+            <form action="/register" method="post" class="p-4">
+                {% with messages = get_flashed_messages(category_filter=['register']) %}
+                    {% if messages %}
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Alert!!</strong>
+                            {% for message in messages %}
+                                <p>{{message}}</p>
+                            {% endfor %}
+                    </div>
+                    {% endif %}
+                {% endwith %}
+                <div class="form-group">
+                    <label for="first_name">First Name:</label>
+                    <input type="text" name="first_name" class="form-control ins">
+                    
+                </div>
+                <div class="form-group">
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" name="last_name" class="form-control ins">
+                </div>
+                <div class="form-group">
+                    <label for="grade">Grade</label>
+                    <select id="inputGrade" type="text" name="grade" class="form-control ins">
+                        <option>Choose...</option>
+                        <option>Kinder</option>
+                        <option>First</option>
+                        <option>Second</option>
+                        <option>Third</option>
+                        <option>Fourth</option>
+                        <option>Fifth</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <select id="inputSubject" type="text" name="subject" class="form-control ins">
+                        <option>Choose...</option>
+                        <option>math</option>
+                        <option>language arts</option>
+                        <option>science</option>
+                        <option>music</option>
+                        <option>art</option>
+                        <option>Japanese</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="text" name="email" class="form-control ins">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" class="form-control ins">
+                </div>
+                <div class="form-group">
+                    <label for="confirm">Confirm Password:</label>
+                    <input type="password" name="confirm" class="form-control ins">
+                </div>
+                <input type="submit" value="Register" class="btn">
+                <button type="button" class="btn" onclick="closeForm2()">Close</button>
+            </form>
+        </div>
+        <div class="form-popup" id="myForm">
+            <form action="/login" method="post" class="p-4">
+                {% with messages = get_flashed_messages(category_filter=['login']) %}
+                    {% if messages %}
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Alert!!</strong>
+                            {% for message in messages %}
+                                <p>{{message}}</p>
+                            {% endfor %}
+                    </div>
+                    {% endif %}
+                {% endwith %}
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="text" name="email" class="form-control ins">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" class="form-control ins">
+                </div>
+                <input type="submit" value="Login" class="btn">
+                <button type="button" class="btn" onclick="closeForm()">Close</button>
+            </form>
+        </div>
+    </div>
+    <script src="{{url_for('static', filename='/js/script.js')}}"></script>
+</body>
+</html>

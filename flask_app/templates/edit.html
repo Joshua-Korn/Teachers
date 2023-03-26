@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Lesson</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav class="d-flex justify-content-end align-items-center col-12 mt-2">
+        <div class="d-flex col-1">
+            <a href="/dashboard" class="btn text-light">My Plans</a>
+        </div>
+        <div class="d-flex col-1">
+            <a href="/logout" class="btn text-light">Logout</a>
+        </div>
+    </nav>
+    <h1 class="text-center mx-auto">Lesson Plan Changes</h1>
+    <div class="container">
+        <form action="/update/plan" method="post" id="new-form" class="col-11 p-4 my-4 mx-auto">
+            {% with messages = get_flashed_messages(category_filter=['plan']) %}
+                {% if messages %}
+                <div class="alert alert-danger" role="alert">
+                    <strong>Alert!</strong>
+                        {% for message in messages %}
+                        <p>{{message}}</p>
+                        {% endfor %}
+                </div>
+                {% endif %}
+            {% endwith %}
+            <div class="d-flex justify-content-around col-10">
+                <input type="hidden" name="id" value={{edit.id}}>
+                <div class="col-5">
+                    <div class="form-group">
+                        <label for="title">Title:</label>
+                        <input type="text" name="title" class="form-control ins" value="{{edit.title}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="inputSubject" type="text" name="subject" class="form-control ins">
+                            <option>Choose...</option>
+                            <option>math</option>
+                            <option>language arts</option>
+                            <option>science</option>
+                            <option>music</option>
+                            <option>art</option>
+                            <option>Japanese</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="grade_level">Grade Level</label>
+                        <select id="inputGradeLevel" type="text" name="grade_level" class="form-control ins">
+                            <option>Choose...</option>
+                            <option>Kinder</option>
+                            <option>First</option>
+                            <option>Second</option>
+                            <option>Third</option>
+                            <option>Fourth</option>
+                            <option>Fifth</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="topic">Topic:</label>
+                        <input type="text" name="topic" class="form-control ins" value="{{edit.topic}}">
+                    </div>
+                </div>
+                <div class="col-5">
+                    <div class="form-group">
+                        <label for="materials">Materials:</label>
+                        <textarea name="materials"  cols="30" rows="5" class="form-control" value={{edit.materials}}></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <textarea name="description" cols="30" rows="5" class="form-control" value="{{edit.description}}"></textarea>
+                    </div>
+                    <br>
+                    <input type="submit" value="Edit Plan" class="btn btn-outline-dark">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="{{url_for('static', filename='/js/jquery-3.6.3.min.js')}}"></script>
+    <script src="{{url_for('static', filename='/js/tether.min.js')}}"></script>
+    <script src="{{url_for('static', filename='/js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='script.js')}}"></script>
+</body>
+</html>

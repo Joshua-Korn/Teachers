@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav class="d-flex justify-content-end align-items-center col-12 mt-2">
+        <div class="d-flex col-1">
+            <a href="/dashboard" class="btn text-light">My Plans</a>
+        </div>
+        <div class="d-flex col-1">
+            <a href="/logout" class="btn text-light">Logout</a>
+        </div>
+    </nav>
+    <h1 class="text-center mx-auto">{{grade_level}} Grade Lesson Plans</h1>
+    <div class="container p-5">
+        <div class="row">
+            <div class="col-2">
+                <h4>Lessons by Grade</h4>
+                <div class="list-group">
+                    <a href="/grades/Kinder" class="dash-links list-group-item"><p class="hover-underline">Kinder</p></a>
+                    <a href="/grades/First" class="dash-links list-group-item"><p class="hover-underline">First</p></a>
+                    <a href="/grades/Second" class="dash-links list-group-item"><p class="hover-underline">Second</p></a>
+                    <a href="/grades/Third" class="dash-links list-group-item"><p class="hover-underline">Third</p></a>
+                    <a href="/grades/Fourth" class="dash-links list-group-item"><p class="hover-underline">Fourth</p></a>
+                    <a href="/grades/Fifth" class="dash-links list-group-item"><p class="hover-underline">Fifth</p></a>
+                </div>
+            </div>
+            <div class="col-10 p-2 full" id="my-plans">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a href="#math" class="nav-link" data-toggle="tab" role="tab">Math</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#language arts" class="nav-link" data-toggle="tab">Language Arts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#science" class="nav-link" data-toggle="tab">Science</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#music" class="nav-link" data-toggle="tab">Music</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#art" class="nav-link" data-toggle="tab">Art</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#Japanese" class="nav-link" data-toggle="tab">Japanese</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="math" role="tabpanel">
+                        <div class="tab-container">
+                            <h2 class="text-center text-dark mx-auto">Math</h2>
+                            <table class="table table-hover ">
+                                <thead id="math-banner" class="thead">
+                                    <tr class="text-center">
+                                        <th>Title</th>
+                                        <th>Grade Level</th>
+                                        <th>Topic</th>
+                                        <th>Options</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for plan in plans[grade_level] %}
+                                        {% if plan.subject == "math"%}
+                                        <tr class="text-center">
+                                            <td>{{plan.title}}</td>
+                                            <td>{{plan.grade_level}}</td>
+                                            <td>{{plan.topic}}</td>
+                                            <td class="text-center">
+                                                <a href="/plan/{{plan.id}}" class="text-dark">View Details</a>
+                                                {% if plan.teacher_id == session.teacher_id %}
+                                                <a href="/edit/plan/{{plan.id}}">Edit</a>
+                                                <a href="/delete/plan/{{plan.id}}" class="text-danger">Delete</a>
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                        {% endif %}
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            <nav class="d-flex justify-content-start align-items-center col-12">
+                                <div class="d-flex col-4">
+                                    <a href="/new/plan" class="btn text-dark"><p class="hover-underline-d">New Lesson Plan</p></a>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="language arts" role="tabpanel">
+                        <div class="tab-container">
+                            <h2 class="text-center text-dark mx-auto">Language Arts</h2>
+                            <table class="table table-hover table-striped">
+                                <thead id="language-banner" class="thead">
+                                    <tr class="text-center">
+                                        <th>Title</th>
+                                        <th>Grade Level</th>
+                                        <th>Topic</th>
+                                        <th>Options</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for plan in plans[grade_level] %}
+                                        {% if plan.subject == "language arts" %}
+                                        <tr class="text-center">
+                                            <td>{{plan.title}}</td>
+                                            <td>{{plan.grade_level}}</td>
+                                            <td>{{plan.topic}}</td>
+                                            <td class="text-center">
+                                                <a href="/plan/{{plan.id}}" class="text-dark">View Details</a>
+                                                {% if plan.teacher_id == session.teacher_id %}
+                                                <a href="/edit/plan/{{plan.id}}">Edit</a>
+                                                <a href="/delete/plan/{{plan.id}}" class="text-danger">Delete</a>
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                        {% endif %}
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            <nav class="d-flex justify-content-start align-items-center col-12">
+                                <div class="d-flex col-4">
+                                    <a href="/new/plan" class="btn text-dark"><p class="hover-underline-d">New Lesson Plan</p></a>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="science" role="tabpanel">
+                        <div class="tab-container">
+                            <h2 class="text-center text-dark mx-auto">Science</h2>
+                            <table class="table table-hover table-striped">
+                                <thead id="science-banner" class="thead">
+                                    <tr class="text-center">
+                                        <th>Title</th>
+                                        <th>Grade Level</th>
+                                        <th>Topic</th>
+                                        <th>Options</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for plan in plans[grade_level] %}
+                                        {% if plan.subject == "science" %}
+                                        <tr class="text-center">
+                                            <td>{{plan.title}}</td>
+                                            <td>{{plan.grade_level}}</td>
+                                            <td>{{plan.topic}}</td>
+                                            <td class="text-center">
+                                                <a href="/plan/{{plan.id}}" class="text-dark">View Details</a>
+                                                {% if plan.teacher_id == session.teacher_id %}
+                                                <a href="/edit/plan/{{plan.id}}">Edit</a>
+                                                <a href="/delete/plan/{{plan.id}}" class="text-danger">Delete</a>
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                        {% endif %}
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            <nav class="d-flex justify-content-start align-items-center col-12">
+                                <div class="d-flex col-4">
+                                    <a href="/new/plan" class="btn text-dark"><p class="hover-underline-d">New Lesson Plan</p></a>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="music" role="tabpanel">
+                        <div class="tab-container">
+                            <h2 class="text-center text-dark mx-auto">Music</h2>
+                            <table class="table table-hover table-striped">
+                                <thead id="music-banner" class="thead">
+                                    <tr class="text-center">
+                                        <th>Title</th>
+                                        <th>Grade Level</th>
+                                        <th>Topic</th>
+                                        <th>Options</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for plan in plans[grade_level] %}
+                                        {% if plan.subject == "music" %}
+                                        <tr class="text-center">
+                                            <td>{{plan.title}}</td>
+                                            <td>{{plan.grade_level}}</td>
+                                            <td>{{plan.topic}}</td>
+                                            <td class="text-center">
+                                                <a href="/plan/{{plan.id}}" class="text-dark">View Details</a>
+                                                {% if plan.teacher_id == session.teacher_id %}
+                                                <a href="/edit/plan/{{plan.id}}">Edit</a>
+                                                <a href="/delete/plan/{{plan.id}}" class="text-danger">Delete</a>
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                        {% endif %}
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            <nav class="d-flex justify-content-start align-items-center col-12">
+                                <div class="d-flex col-4">
+                                    <a href="/new/plan" class="btn text-dark"><p class="hover-underline-d">New Lesson Plan</p></a>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="art" role="tabpanel">
+                        <div class="tab-container">
+                            <h2 class="text-center text-dark mx-auto">Art</h2>
+                            <table class="table table-hover table-striped">
+                                <thead id="art-banner"class="thead">
+                                    <tr class="text-center">
+                                        <th>Title</th>
+                                        <th>Grade Level</th>
+                                        <th>Topic</th>
+                                        <th>Options</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for plan in plans[grade_level] %}
+                                        {% if plan.subject == "art" %}
+                                        <tr class="text-center">
+                                            <td>{{plan.title}}</td>
+                                            <td>{{plan.grade_level}}</td>
+                                            <td>{{plan.topic}}</td>
+                                            <td class="text-center">
+                                                <a href="/plan/{{plan.id}}" class="text-dark">View Details</a>
+                                                {% if plan.teacher_id == session.teacher_id %}
+                                                <a href="/edit/plan/{{plan.id}}">Edit</a>
+                                                <a href="/delete/plan/{{plan.id}}" class="text-danger">Delete</a>
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                        {% endif %}
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            <nav class="d-flex justify-content-start align-items-center col-12">
+                                <div class="d-flex col-4">
+                                    <a href="/new/plan" class="btn text-dark"><p class="hover-underline-d">New Lesson Plan</p></a>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="Japanese" role="tabpanel">
+                        <div class="tab-container">
+                            <h2 class="text-center text-dark mx-auto">日本語</h2>
+                            <table class="table table-hover table-striped">
+                                <thead id="japanese-banner" class="thead">
+                                    <tr class="text-center">
+                                        <th>Title</th>
+                                        <th>Grade Level</th>
+                                        <th>Topic</th>
+                                        <th>Options</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for plan in plans[grade_level] %}
+                                        {% if plan.subject == "Japanese" %}
+                                        <tr class="text-center">
+                                            <td>{{plan.title}}</td>
+                                            <td>{{plan.grade_level}}</td>
+                                            <td>{{plan.topic}}</td>
+                                            <td class="text-center">
+                                                <a href="/plan/{{plan.id}}" class="text-dark">View Details</a>
+                                                {% if plan.teacher_id == session.teacher_id %}
+                                                <a href="/edit/plan/{{plan.id}}">Edit</a>
+                                                <a href="/delete/plan/{{plan.id}}" class="text-danger">Delete</a>
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                        {% endif %}
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            <nav class="d-flex justify-content-start align-items-center col-12">
+                                <div class="d-flex col-4">
+                                    <a href="/new/plan" class="btn text-dark"><p class="hover-underline-d">New Lesson Plan</p></a>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{url_for('static', filename='/js/jquery-3.6.3.min.js')}}"></script>
+    <script src="{{url_for('static', filename='/js/tether.min.js')}}"></script>
+    <script src="{{url_for('static', filename='/js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='script.js')}}"></script>
+</body>
+</html>
