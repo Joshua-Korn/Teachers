@@ -59,7 +59,7 @@ def update_plan():
         "id": request.form["id"]
     }
     Plan.update(data)
-    return redirect('/dashboard')
+    return redirect(f'/plan/{request.form["id"]}')
 
 @app.route('/plan/<int:id>')
 def plan_details(id):
