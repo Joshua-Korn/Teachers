@@ -21,25 +21,24 @@ class Comment:
     def leave_comment(cls, data):
         query = '''
             INSERT INTO comments (content, plan_id, teacher_id, plan_teacher_id)
-            VALUES (%(content)s, %(plan_id)s, %(teacher_id)s, %(plan_teacher_id)s);
+            VALUES (%(content)s, %(plan_id)s, %(teacher_id)s, %(plan_teacher_id)            s);
         '''
         connectToMySQL(db).query_db(query, data)
     
     @classmethod
-<<<<<<< HEAD
     def get_comment(cls,data):
         query = "SELECT * FROM comments where id = %(id)s;"
         results = connectToMySQL(db).query_db(query, data)
         return cls(results[0])
 
-=======
+
     def get_comment(cls, data):
         query = "SELECT * FROM comments where id = %(id)s;"
         results = connectToMySQL(db).query_db(query, data)
         return cls(results[0])
         
     
->>>>>>> 3c3549ff48f01f98fe10df4b6699a28397135d8c
+
     @classmethod
     def delete(cls,data):
         query = "DELETE FROM comments WHERE id = %(id)s;"
