@@ -24,5 +24,6 @@ def delete_comment(id):
     data = {
         "id":id
     }
+    comment = Comment.get_comment(data)
     Comment.delete(data)
-    return redirect('/dashboard')
+    return redirect(f'/plan/{comment.plan_id}')
