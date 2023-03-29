@@ -26,11 +26,20 @@ class Comment:
         connectToMySQL(db).query_db(query, data)
     
     @classmethod
+<<<<<<< HEAD
     def get_comment(cls,data):
         query = "SELECT * FROM comments where id = %(id)s;"
         results = connectToMySQL(db).query_db(query, data)
         return cls(results[0])
 
+=======
+    def get_comment(cls, data):
+        query = "SELECT * FROM comments where id = %(id)s;"
+        results = connectToMySQL(db).query_db(query, data)
+        return cls(results[0])
+        
+    
+>>>>>>> 3c3549ff48f01f98fe10df4b6699a28397135d8c
     @classmethod
     def delete(cls,data):
         query = "DELETE FROM comments WHERE id = %(id)s;"
